@@ -3,7 +3,7 @@
 AC_PREREQ([2.65])
 AC_INIT([pdftoopvp],[1.24.99])
 AC_CONFIG_MACRO_DIR([m4])
-AM_INIT_AUTOMAKE([1.11 gnu dist-xz dist-bzip2 subdir-objects])
+AM_INIT_AUTOMAKE([1.11 gnu foreign dist-xz dist-bzip2 subdir-objects])
 AC_LANG([C++])
 AC_CONFIG_HEADERS([config.h])
 
