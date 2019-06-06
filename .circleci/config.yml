@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Build Poppler
           command: |
-            apt-get install libnss3-dev libcairo2-dev libopenjp2-7-dev
+            apt-get install -y libnss3-dev libcairo2-dev libopenjp2-7-dev
             cd poppler
             cmake -DCMAKE_INSTALL_PREFIX=`pwd`/../root -H. -Bbuild -DENABLE_GLIB=OFF -DENABLE_QT5=OFF
             make -C build
