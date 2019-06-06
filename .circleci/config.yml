@@ -12,7 +12,7 @@ jobs:
           name: Installing Build System
           command: |
             apt-get update
-            apt-get install -y git build-essential cmake libcairo2-dev libcupsimage2-dev
+            apt-get install -y git build-essential cmake libcupsimage2-dev
 
       - checkout
       - run:
@@ -25,6 +25,7 @@ jobs:
       - run:
           name: Build Poppler
           command: |
+            apt-get install libnss3-dev libcairo2-dev libopenjp2-7-dev
             cd poppler
             cmake -DCMAKE_INSTALL_PREFIX=`pwd`/../root -H. -Bbuild -DENABLE_GLIB=OFF -DENABLE_QT5=OFF
             make -C build
