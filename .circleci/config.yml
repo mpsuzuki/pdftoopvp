@@ -1,0 +1,62 @@
+version: 2
+
+jobs:
+  build:
+    branches:
+      only:
+        - master
+    docker:
+      - image: ubuntu:bionic
+    steps:
+      - run:
+          name: Installing Build System
+          command: |
+            apt-get update
+            apt-get install -y git build-essential cmake libcairo2-dev libcupsimage2-dev
+
+      - checkout
+      - run:
+#          name: Setup latest Poppler + QPdf + CUPS-filters
+          name: Setup latest Poppler
+          command: |
+            git submodule sync
+            git submodule update --init
+
+      - run:
+          name: Build Poppler
+          command: |
+            cd poppler
+            cmake -DCMAKE_INSTALL_PREFIX=`pwd`/../root -H. -Bbuild -DENABLE_GLIB=OFF -DENABLE_QT5=OFF
+            make -C build
+            make -C build install
+            mkdir ../root/include/poppler/goo
+            mkdir ../root/include/poppler/splash
+            cp goo/*.h ../root/include/poppler/goo/
+            cp splash/*.h ../root/include/poppler/splash/
+            cp poppler/*.h ../root/include/poppler/
+            cp build-static-make/poppler/*.h ../root/include/poppler/
+            cd ../root/include/poppler/ && ln -s ../poppler .
+
+#      - run:
+#          name: Build QPdf
+#          command: |
+#            cd qpdf
+#            ./configure --prefix=`pwd`/../root 
+#            make
+#            make install
+#
+#      - run:
+#          name: Build CUPS-filters
+#          command: |
+#            cd cups-filters
+#            ./autogen.sh
+#            env PKG_CONFIG_PATH=`pwd`/../root/lib/pkgconfig/ ./configure --prefix=`pwd`/../root
+#            make
+#            make install
+#
+      - run:
+          name: Build pdftoopvp
+          command: |
+            ./autogen.sh
+            env PKG_CONFIG_PATH=`pwd`/root/lib/pkgconfig/ ./configure
+            make
