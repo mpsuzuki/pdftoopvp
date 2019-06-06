@@ -9,6 +9,10 @@
 #include "cpp/poppler-version.h"
 #endif
 
+#if POPPLER_VERSION_MINOR > 72
+typedef unsigned char Guchar;
+#endif
+
 #ifdef USE_GCC_PRAGMAS
 #pragma implementation
 #endif

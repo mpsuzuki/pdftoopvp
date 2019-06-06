@@ -11,11 +11,17 @@
 
 #include <config.h>
 
+#ifdef HAVE_CPP_POPPLER_VERSION_H
+#include "cpp/poppler-version.h"
+#endif
+
 #ifdef USE_GCC_PRAGMAS
 #pragma interface
 #endif
 
+#if POPPLER_VERSION_MINOR < 73
 #include "goo/gtypes.h"
+#endif
 #include "splash/SplashTypes.h"
 #include "config.h"
 #include "OutputDev.h"

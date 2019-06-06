@@ -16,6 +16,9 @@
 #ifdef HAVE_CPP_POPPLER_VERSION_H
 #include "cpp/poppler-version.h"
 #endif
+#if POPPLER_VERSION_MINOR > 72
+typedef unsigned char Guchar;
+#endif
 #include "goo/GooString.h"
 #define GSTRING_H // for old GooString.h
 #include "goo/gmem.h"
