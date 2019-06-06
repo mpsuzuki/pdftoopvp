@@ -1,0 +1,9 @@
+[submodule "poppler"]
+	path = poppler
+	url = https://github.com/freedesktop/poppler
+#[submodule "cups-filters"]
+#	path = cups-filters
+#	url = https://github.com/OpenPrinting/cups-filters
+#[submodule "qpdf"]
+#	path = qpdf
+#	url = https://github.com/qpdf/qpdf
