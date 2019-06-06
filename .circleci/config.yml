@@ -35,7 +35,7 @@ jobs:
             cp goo/*.h ../root/include/poppler/goo/
             cp splash/*.h ../root/include/poppler/splash/
             cp poppler/*.h ../root/include/poppler/
-            cp build-static-make/poppler/*.h ../root/include/poppler/
+            cp build/poppler/*.h ../root/include/poppler/
             cd ../root/include/poppler/ && ln -s ../poppler .
 
 #      - run:
