@@ -14,7 +14,7 @@ jobs:
             apt-get update
             apt-get install -y git build-essential cmake libcupsimage2-dev
             apt-get install -y autoconf automake autotools-dev libtool
-            apt-get install -y libnss3-dev libcairo2-dev libopenjp2-7-dev
+            apt-get install -y libnss3-dev libcairo2-dev libopenjp2-7-dev libopenjp2-tools libopenjp2-7
 
       - checkout
       - run:
@@ -31,8 +31,10 @@ jobs:
             cmake -DCMAKE_INSTALL_PREFIX=`pwd`/../root -H. -Bbuild -DENABLE_GLIB=OFF -DENABLE_QT5=OFF
             make -C build
             make -C build install
+            mkdir ../root/include/poppler/fofi
             mkdir ../root/include/poppler/goo
             mkdir ../root/include/poppler/splash
+            cp fofi/*.h ../root/include/poppler/fofi/
             cp goo/*.h ../root/include/poppler/goo/
             cp splash/*.h ../root/include/poppler/splash/
             cp poppler/*.h ../root/include/poppler/
