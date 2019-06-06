@@ -28,7 +28,7 @@ jobs:
           name: Build Poppler
           command: |
             cd poppler
-            cmake -DCMAKE_INSTALL_PREFIX=`pwd`/../root -H. -Bbuild -DENABLE_GLIB=OFF -DENABLE_QT5=OFF
+            cmake -DCMAKE_INSTALL_PREFIX=`pwd`/../root -H. -Bbuild -DENABLE_GLIB=OFF -DENABLE_QT5=OFF -DENABLE_UTILS=OFF
             make -C build
             make -C build install
             mkdir ../root/include/poppler/fofi
