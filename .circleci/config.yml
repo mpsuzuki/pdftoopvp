@@ -21,8 +21,7 @@ jobs:
 #          name: Setup latest Poppler + QPdf + CUPS-filters
           name: Setup latest Poppler
           command: |
-            git submodule sync
-            git submodule update --init
+            git clone https://github.com/freedesktop/poppler
 
       - run:
           name: Build Poppler
