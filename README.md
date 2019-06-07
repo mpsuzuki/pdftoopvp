@@ -1,5 +1,6 @@
-pdftoopvp
-=========
+# pdftoopvp
+
+[![CircleCI](https://circleci.com/gh/mpsuzuki/pdftoopvp/tree/master.svg?style=svg)](https://circleci.com/gh/mpsuzuki/pdftoopvp/tree/master)
 
 pdftoopvp is a poppler-based cups-filter, which renders a PDF onto OPVP
 (OpenPrinting Vector Protocol) device. This was incorporated on 2012,
