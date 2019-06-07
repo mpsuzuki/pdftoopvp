@@ -48,5 +48,5 @@ jobs:
           name: Build pdftoopvp
           command: |
             ./autogen.sh
-            env PKG_CONFIG_PATH=`pwd`/root/lib/pkgconfig/ ./configure
+            env PKG_CONFIG_PATH=`pwd`/root/lib/pkgconfig/ PATH=`pwd`/root/bin:${PATH} ./configure
             make
