@@ -18,10 +18,21 @@ jobs:
 
       - checkout
       - run:
-#          name: Setup latest Poppler + QPdf + CUPS-filters
-          name: Setup latest Poppler
+          name: Setup latest Poppler + CUPS
           command: |
             git clone https://github.com/freedesktop/poppler
+            git clone https://github.com/mpsuzuki/cups
+            cd cups
+            git remote add upstream https://github.com/apple/cups
+            git fetch upstream
+            git rebase upstream/master
+
+      - run:
+          name: Build CUPS
+          command: |
+            cd cups
+            ./configure --prefix=`pwd`/../root/
+            make install INITDIR=`pwd`/../root/etc DBUSDIR=`pwd`/../root/etc/dbus-1 MENUDIR=`pwd`/../share/applications ICONDIR=`pwd`/../root/share/icons
 
       - run:
           name: Build Poppler
@@ -31,32 +42,7 @@ jobs:
             make -C build
             make -C build install
             ( mkdir -p ../root/include/poppler/ && cd ../root/include/poppler/ && ln -s ../poppler . )
-#            mkdir ../root/include/poppler/fofi
-#            mkdir ../root/include/poppler/goo
-#            mkdir ../root/include/poppler/splash
-#            cp fofi/*.h ../root/include/poppler/fofi/
-#            cp goo/*.h ../root/include/poppler/goo/
-#            cp splash/*.h ../root/include/poppler/splash/
-#            cp poppler/*.h ../root/include/poppler/
-#            cp build/poppler/*.h ../root/include/poppler/
 
-#      - run:
-#          name: Build QPdf
-#          command: |
-#            cd qpdf
-#            ./configure --prefix=`pwd`/../root 
-#            make
-#            make install
-#
-#      - run:
-#          name: Build CUPS-filters
-#          command: |
-#            cd cups-filters
-#            ./autogen.sh
-#            env PKG_CONFIG_PATH=`pwd`/../root/lib/pkgconfig/ ./configure --prefix=`pwd`/../root
-#            make
-#            make install
-#
       - run:
           name: Build pdftoopvp
           command: |
